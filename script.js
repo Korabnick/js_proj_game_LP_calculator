@@ -36,14 +36,17 @@ document.getElementById('plusStoryPoints').addEventListener('click', function() 
 
 document.getElementById('minusStoryPoints').addEventListener('click', function() {
     if (storyTrainingPoints > 0) {
-    if (trainingPoints - storyTrainingPoints >= 0) {
-        storyTrainingPoints--;
-        document.getElementById('storyTrainingPoints').textContent = storyTrainingPoints;
-        trainingPoints--; // Отнимаем 1 очко обучения
-        document.getElementById('trainingPoints').textContent = trainingPoints;
+        // Проверяем, можно ли вычесть бонусные очки без перехода в отрицательное значение основных очков
+        if (trainingPoints > 0) {
+            storyTrainingPoints--;
+            document.getElementById('storyTrainingPoints').textContent = storyTrainingPoints;
+            trainingPoints--; // Вычитаем одно основное очко
+            document.getElementById('trainingPoints').textContent = trainingPoints;
         } else {
-        alert('Ошибка: Количество очков обучение не может быть отрицательным.');
+            alert('Ошибка: Количество очков обучения не может быть отрицательным.');
         }
+    } else {
+        alert('У вас нет бонусных очков для вычета.');
     }
 });
 

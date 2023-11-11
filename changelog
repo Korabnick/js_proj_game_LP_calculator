@@ -7,4 +7,4 @@
 - Added frontend placeholder.
 - Fixed getting negative value.
 - Fixed the presence of the "-" button at the minimum threshold of the craft skill.
-@Known issues: There is an error in which it is impossible to reduce the number of bonus LP without returning all the spent ones.
+- Fixed an error in which it is impossible to reduce the number of bonus LP without returning all the spent ones.
