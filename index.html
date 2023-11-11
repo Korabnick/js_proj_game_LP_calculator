@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Характеристики</title>
+    <style>
+    </style>
+</head>
+<body>
+
+    <p>Очки обучения: <span id="trainingPoints">75</span></p>
+    <p>Бонус LP из квенты/анкеты: <span id="storyTrainingPoints">0</span></p>
+    <button id="plusStoryPoints">+</button>
+    <button id="minusStoryPoints">-</button>
+    
+    <h2>Характеристики</h2>
+    <table border="1">
+        <tr>
+            <th>Характеристики</th>
+            <th>Значение</th>
+            <th>Управление</th>
+        </tr>
+        <tr>
+            <td>Сила</td>
+            <td id="strength">30</td>
+            <td>
+                <button id="plusStrength">+</button>
+                <button id="minusStrength" style="display: none">-</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Ловкость</td>
+            <td id="agility">30</td>
+            <td>
+                <button id="plusAgility">+</button>
+                <button id="minusAgility" style="display: none">-</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Мана Круг</td>
+            <td>
+                <span id="mana">0</span>
+                <span id="manaCircle">0</span>
+            </td>
+            <td>
+                <button id="plusMana">+</button>
+                <button id="minusMana" style="display: none">-</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Здоровье</td>
+            <td id="health">500</td>
+            <td>
+                <button id="plusHealth">+</button>
+                <button id="minusHealth" style="display: none">-</button>
+            </td>
+        </tr>
+    </table>
+    
+    <h2>Навыки</h2>
+    <table border="1">
+        <tr>
+            <th>Навыки</th>
+            <th>Значение</th>
+            <th>Управление</th>
+        </tr>
+        <tr>
+            <td>Владение одноручным мечом</td>
+            <td id="oneHanded">20</td>
+            <td>
+                <button id="plusOneHanded">+</button>
+                <button id="minusOneHanded" style="display: none">-</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Владение двуручным мечом</td>
+            <td id="twoHanded">20</td>
+            <td>
+                <button id="plusTwoHanded">+</button>
+                <button id="minusTwoHanded" style="display: none">-</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Владение луком</td>
+            <td id="archery">20</td>
+            <td>
+                <button id="plusArchery">+</button>
+                <button id="minusArchery" style="display: none">-</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Снятие шкур</td>
+            <td id="skinning">Нет</td>
+            <td>
+                <button id="toggleSkinning">Изменить</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Снятие панцирей</td>
+            <td id="shelling">Нет</td>
+            <td>
+                <button id="toggleShelling">Изменить</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Добыча жала шершня</td>
+            <td id="harvesting">Нет</td>
+            <td>
+                <button id="toggleHarvesting">Изменить</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Ремесло</td>
+            <td id="crafting">Нет</td>
+            <td>
+                <button id="plusCrafting">+</button>
+                <button id="minusCrafting">-</button>
+            </td>
+        </tr>
+    </table>
+
+<script src="script.js"></script>
+
+</body>
+</html>
