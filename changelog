@@ -8,3 +8,5 @@
 - Fixed getting negative value.
 - Fixed the presence of the "-" button at the minimum threshold of the craft skill.
 - Fixed an error in which it is impossible to reduce the number of bonus LP without returning all the spent ones.
+- Fixed the lack of checking available LP when improving HP or MH
+- Fixed a bug where it was impossible to return the craft level at least by 1 without having a number of free training points of this tier

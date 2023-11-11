@@ -151,7 +151,7 @@ function updateManaAndCircle(mana) {
 
 // Мана +
 document.getElementById('plusMana').addEventListener('click', function() {
-    if (mana < 750) {
+    if (trainingPoints > 0 && mana < 750) {
         mana += 10;
         if (mana > 750) {
             alert('Вы достигли максимума для данного навыка.');
@@ -159,8 +159,10 @@ document.getElementById('plusMana').addEventListener('click', function() {
         }
         updateManaAndCircle(mana);
         updateTrainingPoints(-1);
-    } else {
+    } else if (mana >= 750) {
         alert('Вы достигли максимума для данного навыка.');
+    } else {
+        alert('Недостаточно очков обучения для этого действия.');
     }
 });
 
@@ -175,11 +177,11 @@ document.getElementById('minusMana').addEventListener('click', function() {
             document.getElementById('minusMana').style.display = 'none';
         }
     }
-});
+}); 
 
 // Здоровье +
 document.getElementById('plusHealth').addEventListener('click', function() {
-    if (health < 750) {
+    if (trainingPoints > 0 && health < 750) {
         if (health >= 650) {
             health += 5;
         } else {
@@ -191,8 +193,10 @@ document.getElementById('plusHealth').addEventListener('click', function() {
         }
         updateHealth(health);
         updateTrainingPoints(-1);
-    } else {
+    } else if (health >= 750) {
         alert('Вы достигли максимума для данного навыка.');
+    } else {
+        alert('Недостаточно очков обучения для этого действия.');
     }
 });
 
@@ -414,31 +418,38 @@ document.getElementById('toggleHarvesting').addEventListener('click', function()
 
 document.getElementById('plusCrafting').addEventListener('click', function() {
     if (trainingPoints > 0) {
-        if (crafting === "Нет") {
+        if (crafting === "Нет" && trainingPoints >= 5) {
             crafting = "T1";
             updateTrainingPoints(-5);
-        } else if (crafting === "T1") {
+        } else if (crafting === "T1" && trainingPoints >= 7) {
             crafting = "T2";
             updateTrainingPoints(-7);
-        } else if (crafting === "T2") {
+        } else if (crafting === "T2" && trainingPoints >= 9) {
             crafting = "T3";
             updateTrainingPoints(-9);
             document.getElementById('minusCrafting').style.display = 'inline'; // Показать кнопку минуса для T3
         } else if (crafting === "T3") {
-            alert("Достигнут максимальный уровень ремесла"); // Добавить оповещение о достижении максимального уровня
+            alert("Достигнут максимальный уровень ремесла"); // Оповещение о достижении максимального уровня
+        } else {
+            alert("Недостаточно очков обучения для этого действия!");
         }
         document.getElementById('crafting').textContent = crafting;
+        document.getElementById('minusCrafting').style.display = 'inline'; // Показать кнопку минуса по умолчанию
     } else {
         alert("Недостаточно очков обучения для этого действия!");
     }
 });
 
 document.getElementById('minusCrafting').addEventListener('click', function() {
-    if (trainingPoints > 0) {
+    if (crafting !== "Нет") {
         if (crafting === "T4") {
-            crafting = "T3";
-            updateTrainingPoints(11); // Возвращаем значение обратно, если уровень T4 больше стоит
-            document.getElementById('plusCrafting').disabled = false; // Активируем кнопку plusCrafting для T3
+            if (trainingPoints >= 11) {
+                crafting = "T3";
+                updateTrainingPoints(11);
+                document.getElementById('plusCrafting').disabled = false;
+            } else {
+                alert("Недостаточно очков обучения для этого действия!");
+            }
         } else if (crafting === "T3") {
             crafting = "T2";
             updateTrainingPoints(9);
