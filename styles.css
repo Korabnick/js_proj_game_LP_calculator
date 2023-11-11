@@ -1,0 +1,142 @@
+/* styles.css */
+
+/* Основные стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f3f3f3;
+}
+
+h2 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #aaa;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #eee;
+}
+
+/* Кнопки управления */
+button {
+    padding: 6px 12px;
+    margin: 4px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Скрытие кнопок "-" по умолчанию */
+button[style="display: none"] {
+    display: none;
+}
+
+/* Красивые изменения для кнопок "Изменить" */
+button#toggleSkinning,
+button#toggleShelling,
+button#toggleHarvesting {
+    background-color: #27ae60;
+}
+
+button#toggleSkinning:hover,
+button#toggleShelling:hover,
+button#toggleHarvesting:hover {
+    background-color: #1e8449;
+}
+
+/* Используемые стили для полей с навыками "Да"/"Нет" */
+td#skinning, td#shelling, td#harvesting {
+    font-weight: bold;
+}
+
+/* Стили для span с маной и кругом маны */
+span#mana,
+span#manaCircle {
+    font-style: italic;
+}
+
+/* Сообщение об ошибке */
+.alert {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+/* Стили для информационных сообщений */
+.info {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px;
+}
+
+.characteristics,
+.skills {
+    margin-right: 20px;
+    text-align: center; /* Для центрирования текста в ячейках таблиц */
+}
+
+.characteristics table,
+.skills table {
+    width: 80%; /* Уменьшим ширину таблиц для лучшего визуального эффекта */
+    margin: 0 auto; /* Центрирование таблиц */
+}
+
+.characteristics th,
+.skills th,
+.characteristics td,
+.skills td {
+    border: 1px solid #aaa;
+    padding: 8px;
+    text-align: left;
+}
+
+.characteristics th,
+.skills th {
+    background-color: #eee;
+}
+
+
+.top-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.points-table {
+    display: inline-block;
+    border: 1px solid #aaa;
+    padding: 10px;
+}
+
+.points-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto; /* Центрирование таблиц */
+}
+
+.points-table td {
+    padding: 8px;
+    text-align: left;
+}
