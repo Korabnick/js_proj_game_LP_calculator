@@ -1,3 +1,7 @@
+window.onload = function () {
+    loadDataFromLocalStorage();
+};
+
 let trainingPoints = 75;
 let storyTrainingPoints = 0;
 let strength = 30;
@@ -13,12 +17,13 @@ let shelling = "Нет";
 let harvesting = "Нет";
 let crafting = "Нет";
 
-// Характеристики 
+// Характеристики
 
 // Количество очков обучения
 function updateTrainingPoints(points) {
     trainingPoints += points;
     document.getElementById('trainingPoints').textContent = trainingPoints;
+    saveDataToLocalStorage();
 }
 
 // Количество очков обучения за квенту (бонусные)
@@ -27,6 +32,7 @@ function updateStoryTrainingPoints(points) {
         storyTrainingPoints += points;
         document.getElementById('storyTrainingPoints').textContent = storyTrainingPoints;
         updateTrainingPoints(points); // Обновление основных очков обучения
+        saveDataToLocalStorage();
     }
 }
 
@@ -42,6 +48,7 @@ document.getElementById('minusStoryPoints').addEventListener('click', function()
             document.getElementById('storyTrainingPoints').textContent = storyTrainingPoints;
             trainingPoints--; // Вычитаем одно основное очко
             document.getElementById('trainingPoints').textContent = trainingPoints;
+            saveDataToLocalStorage();
         } else {
             alert('Ошибка: Количество очков обучения не может быть отрицательным.');
         }
@@ -177,7 +184,7 @@ document.getElementById('minusMana').addEventListener('click', function() {
             document.getElementById('minusMana').style.display = 'none';
         }
     }
-}); 
+});
 
 // Здоровье +
 document.getElementById('plusHealth').addEventListener('click', function() {
@@ -243,17 +250,15 @@ document.getElementById('plusOneHanded').addEventListener('click', function() {
         return;
     }
 
-    if (trainingPoints >= 5) {
-        if (oneHanded === 20) {
-            oneHanded += 30;
-            updateOneHanded(oneHanded, -5);
-        } else if (oneHanded === 50) {
-            oneHanded += 20;
-            updateOneHanded(oneHanded, -10);
-        } else if (oneHanded === 70) {
-            oneHanded = 90;
-            updateOneHanded(oneHanded, -20);
-        }
+    if (oneHanded === 20 & trainingPoints >= 5) {
+        oneHanded += 30;
+        updateOneHanded(oneHanded, -5);
+    } else if (oneHanded === 50 & trainingPoints >= 10) {
+        oneHanded += 20;
+        updateOneHanded(oneHanded, -10);
+    } else if (oneHanded === 70 & trainingPoints >= 20) {
+        oneHanded = 90;
+        updateOneHanded(oneHanded, -20)
     } else {
         alert('Недостаточно очков обучения');
     }
@@ -293,17 +298,15 @@ document.getElementById('plusTwoHanded').addEventListener('click', function() {
         return;
     }
 
-    if (trainingPoints >= 5) {
-        if (twoHanded === 20) {
-            twoHanded += 30;
-            updateTwoHanded(twoHanded, -5);
-        } else if (twoHanded === 50) {
-            twoHanded += 20;
-            updateTwoHanded(twoHanded, -10);
-        } else if (twoHanded === 70) {
-            twoHanded = 90;
-            updateTwoHanded(twoHanded, -20);
-        }
+    if (twoHanded === 20 & trainingPoints >= 5) {
+        twoHanded += 30;
+        updateTwoHanded(twoHanded, -5);
+    } else if (twoHanded === 50 & trainingPoints >= 10) {
+        twoHanded += 20;
+        updateTwoHanded(twoHanded, -10);
+    } else if (twoHanded === 70 & trainingPoints >= 20) {
+        twoHanded = 90;
+        updateTwoHanded(twoHanded, -20)
     } else {
         alert('Недостаточно очков обучения');
     }
@@ -343,17 +346,15 @@ document.getElementById('plusArchery').addEventListener('click', function() {
         return;
     }
 
-    if (trainingPoints >= 5) {
-        if (archery === 20) {
-            archery += 30;
-            updateArchery(archery, -5);
-        } else if (archery === 50) {
-            archery += 20;
-            updateArchery(archery, -10);
-        } else if (archery === 70) {
-            archery = 90;
-            updateArchery(archery, -20);
-        }
+    if (archery === 20 & trainingPoints >= 5) {
+        archery += 30;
+        updateArchery(archery, -5);
+    } else if (archery === 50 & trainingPoints >= 10) {
+        archery += 20;
+        updateArchery(archery, -10);
+    } else if (archery === 70 & trainingPoints >= 20) {
+        archery = 90;
+        updateArchery(archery, -20)
     } else {
         alert('Недостаточно очков обучения');
     }
@@ -375,6 +376,7 @@ document.getElementById('minusArchery').addEventListener('click', function() {
     }
 });
 
+// Снятие шкур
 document.getElementById('toggleSkinning').addEventListener('click', function() {
     if (skinning === "Нет" && trainingPoints >= 5) {
         skinning = "Да";
@@ -388,6 +390,7 @@ document.getElementById('toggleSkinning').addEventListener('click', function() {
     document.getElementById('skinning').textContent = skinning;
 });
 
+// Снятие панцирей
 document.getElementById('toggleShelling').addEventListener('click', function() {
     if (trainingPoints > 0) {
         shelling = shelling === "Нет" ? "Да" : "Нет";
@@ -402,6 +405,7 @@ document.getElementById('toggleShelling').addEventListener('click', function() {
     }
 });
 
+// Добыча жала шершня
 document.getElementById('toggleHarvesting').addEventListener('click', function() {
     if (trainingPoints > 0) {
         harvesting = harvesting === "Нет" ? "Да" : "Нет";
@@ -416,6 +420,7 @@ document.getElementById('toggleHarvesting').addEventListener('click', function()
     }
 });
 
+// Ремесло +
 document.getElementById('plusCrafting').addEventListener('click', function() {
     if (trainingPoints > 0) {
         if (crafting === "Нет" && trainingPoints >= 5) {
@@ -440,6 +445,7 @@ document.getElementById('plusCrafting').addEventListener('click', function() {
     }
 });
 
+// Ремесло -
 document.getElementById('minusCrafting').addEventListener('click', function() {
     if (crafting !== "Нет") {
         if (crafting === "T4") {
@@ -468,3 +474,130 @@ document.getElementById('minusCrafting').addEventListener('click', function() {
         alert("Недостаточно очков обучения для этого действия!");
     }
 });
+
+// Сброс данных калькулятора.
+document.getElementById('resetButton').addEventListener('click', function() {
+    if (confirm('Вы уверены, что хотите сбросить все изменения?')) {
+        // Сбросите все переменные и обновите интерфейс
+        trainingPoints = 75;
+        storyTrainingPoints = 0;
+        strength = 30;
+        agility = 30;
+        mana = 0;
+        manaCircle = 0;
+        health = 500;
+        oneHanded = 20;
+        twoHanded = 20;
+        archery = 20;
+        skinning = "Нет";
+        shelling = "Нет";
+        harvesting = "Нет";
+        crafting = "Нет";
+
+        // Обновление интерфейса
+        document.getElementById('trainingPoints').textContent = trainingPoints;
+        document.getElementById('storyTrainingPoints').textContent = storyTrainingPoints;
+        document.getElementById('strength').textContent = strength;
+        document.getElementById('agility').textContent = agility;
+        document.getElementById('mana').textContent = mana;
+        document.getElementById('manaCircle').textContent = manaCircle;
+        document.getElementById('health').textContent = health;
+        document.getElementById('oneHanded').textContent = oneHanded;
+        document.getElementById('twoHanded').textContent = twoHanded;
+        document.getElementById('archery').textContent = archery;
+        document.getElementById('skinning').textContent = skinning;
+        document.getElementById('shelling').textContent = shelling;
+        document.getElementById('harvesting').textContent = harvesting;
+        document.getElementById('crafting').textContent = crafting;
+
+        // Скрытие кнопок "-" для силы и ловкости
+        document.getElementById('minusStrength').style.display = 'none';
+        document.getElementById('minusAgility').style.display = 'none';
+        document.getElementById('minusMana').style.display = 'none';
+        document.getElementById('minusHealth').style.display = 'none';
+        // Скрытие кнопок "-" для навыков
+        document.getElementById('minusOneHanded').style.display = 'none';
+        document.getElementById('minusTwoHanded').style.display = 'none';
+        document.getElementById('minusArchery').style.display = 'none';
+        document.getElementById('minusCrafting').style.display = 'none';
+        saveDataToLocalStorage();
+    }
+});
+
+// Функция сохранения данных в localStorage
+function saveDataToLocalStorage() {
+    const dataToSave = {
+        trainingPoints,
+        storyTrainingPoints,
+        strength,
+        agility,
+        mana,
+        manaCircle,
+        health,
+        oneHanded,
+        twoHanded,
+        archery,
+        skinning,
+        shelling,
+        harvesting,
+        crafting
+    };
+
+    localStorage.setItem('lpCalcData', JSON.stringify(dataToSave));
+}
+
+// Функция загрузки данных из localStorage
+function loadDataFromLocalStorage() {
+    const savedData = localStorage.getItem('lpCalcData');
+
+    if (savedData) {
+        const parsedData = JSON.parse(savedData);
+
+        trainingPoints = parsedData.trainingPoints;
+        storyTrainingPoints = parsedData.storyTrainingPoints;
+        strength = parsedData.strength;
+        agility = parsedData.agility;
+        mana = parsedData.mana;
+        manaCircle = parsedData.manaCircle;
+        health = parsedData.health;
+        oneHanded = parsedData.oneHanded;
+        twoHanded = parsedData.twoHanded;
+        archery = parsedData.archery;
+        skinning = parsedData.skinning;
+        shelling = parsedData.shelling;
+        harvesting = parsedData.harvesting;
+        crafting = parsedData.crafting;
+
+        // Обновление интерфейса
+        document.getElementById('trainingPoints').textContent = trainingPoints;
+        document.getElementById('storyTrainingPoints').textContent = storyTrainingPoints;
+        document.getElementById('strength').textContent = strength;
+        document.getElementById('agility').textContent = agility;
+        document.getElementById('mana').textContent = mana;
+        document.getElementById('manaCircle').textContent = manaCircle;
+        document.getElementById('health').textContent = health;
+        document.getElementById('oneHanded').textContent = oneHanded;
+        document.getElementById('twoHanded').textContent = twoHanded;
+        document.getElementById('archery').textContent = archery;
+        document.getElementById('skinning').textContent = skinning;
+        document.getElementById('shelling').textContent = shelling;
+        document.getElementById('harvesting').textContent = harvesting;
+        document.getElementById('crafting').textContent = crafting;
+
+        // Скрытие кнопок "-" для силы и ловкости
+        document.getElementById('minusStrength').style.display = strength > 30 ? 'inline' : 'none';
+        document.getElementById('minusAgility').style.display = agility > 30 ? 'inline' : 'none';
+
+        // Скрытие кнопок "-" для маны
+        document.getElementById('minusMana').style.display = mana > 0 ? 'inline' : 'none';
+
+        // Скрытие кнопок "-" для здоровья
+        document.getElementById('minusHealth').style.display = health > 500 ? 'inline' : 'none';
+
+        // Скрытие кнопок "-" для навыков
+        document.getElementById('minusOneHanded').style.display = oneHanded > 20 ? 'inline' : 'none';
+        document.getElementById('minusTwoHanded').style.display = twoHanded > 20 ? 'inline' : 'none';
+        document.getElementById('minusArchery').style.display = archery > 20 ? 'inline' : 'none';
+        document.getElementById('minusCrafting').style.display = crafting !== 'Нет' ? 'inline' : 'none';
+    }
+}

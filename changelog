@@ -1,6 +1,7 @@
-**.11.2023:
-- Saving calculator values will be added.
-- A calculator reset button will be added.
+14.11.2023:
+- Add calculator reset button.
+- Added saving calculator values after page refresh.
+- Fixed negative LP value after improved weapon proficiency.
 
 11.11.2023:
 - The LP calculator has been uploaded.
@@ -8,5 +9,5 @@
 - Fixed getting negative value.
 - Fixed the presence of the "-" button at the minimum threshold of the craft skill.
 - Fixed an error in which it is impossible to reduce the number of bonus LP without returning all the spent ones.
-- Fixed the lack of checking available LP when improving HP or MH
-- Fixed a bug where it was impossible to return the craft level at least by 1 without having a number of free training points of this tier
+- Fixed the lack of checking available LP when improving HP or MH.
+- Fixed a bug where it was impossible to return the craft level at least by 1 without having a number of free training points of this tier.
